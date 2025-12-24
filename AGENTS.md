@@ -79,4 +79,3 @@ One focused task per session. For complex features:
 - Manual `/compact` at 60%+ usage (check with `/cost`)
 - Begin next phase with compacted context
 - New session for unrelated work
-

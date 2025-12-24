@@ -56,6 +56,7 @@ Cursor Bugbot posts here as inline comments on specific code lines. Username is
 `cursor[bot]`. Address all Cursor comments - each flags a distinct location.
 
 You can also use:
+
 - `gh pr view {number} --comments` for PR-level comments
 - `gh api repos/{owner}/{repo}/pulls/{pr}/reviews` for review status
 
@@ -130,6 +131,7 @@ separately from bot comments.
 When all review bot checks have completed and no new actionable feedback remains:
 
 Display prominently:
+
 - PR URL (most important - user may have multiple sessions)
 - PR title
 - Summary of what was addressed vs declined

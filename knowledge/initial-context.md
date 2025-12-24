@@ -11,6 +11,7 @@
 **Goal:** $100,000 in earnings by January 2026
 
 **Core Team:**
+
 - **Nick Sullivan** - Architecture, AI/LLM integration, bot infrastructure
 - **Kenny Sullivan** - Manual trading strategies, market expertise, strategy validation
 - **Torin** - Bot development, trade-copying bot, data collection
@@ -23,6 +24,7 @@
 ## Platforms
 
 ### Polymarket
+
 - Currently banned in US (green light to return November 2024, not yet available without VPN/crypto)
 - API available for bots
 - Leaderboard system for tracking top traders
@@ -30,6 +32,7 @@
 - Categories: Sports, Crypto, Politics
 
 ### Kalshi
+
 - Legal in US
 - Similar prediction market structure
 - Good for low-volume underdogs (college basketball especially)
@@ -45,6 +48,7 @@
 **Core Concept:** Exploit volatility in low-volume underdog markets pre-game
 
 **How it works:**
+
 1. Focus on heavy underdogs (1-4% odds) in low-volume markets
 2. College basketball is ideal - 25+ games daily with massive underdogs
 3. Low volume = odds bounce significantly (e.g., 2% → 4% → 2% → 4%)
@@ -54,6 +58,7 @@
 7. Place "hopeful" orders at 1¢ that occasionally fill
 
 **Key Insights:**
+
 - Order book more valuable than price graphs
 - Default "buy in dollars" fills at bad prices - always use limit orders
 - Turn off "flip sell" setting
@@ -61,6 +66,7 @@
 - Sportsbook odds = true odds; Kalshi volatility creates opportunity
 
 **Risk Profile:**
+
 - Floor is 1¢ (can always sell at 1¢ pregame)
 - Never hold through game start for underdogs
 - Minimal losses if sold pregame
@@ -70,6 +76,7 @@
 **Concept:** Mirror trades of top Polymarket performers in near-real-time
 
 **Current Implementation:**
+
 - Scans leaderboard for top 5 daily/weekly profit makers
 - Buys 100 shares when target user buys
 - Sells same percentage when target sells or market closes
@@ -78,6 +85,7 @@
 - Simulated results: $52 profit overnight
 
 **Challenges:**
+
 - API rate limits (~1 second per call)
 - Slippage when copying (buying at worse price)
 - Some top earners are "whales" with high losses overall
@@ -86,6 +94,7 @@
 ### Hedging/Arbitrage (Observed in Top Traders)
 
 **Observed Patterns:**
+
 - "Gabagool" on Polymarket: 90% win rate on Bitcoin price prediction
 - Buys both YES and NO when combined < 100¢
 - Exploits odds mismatches between platforms (Polymarket vs Kalshi)
@@ -97,6 +106,7 @@
 ## Technical Architecture (Proposed by Nick)
 
 ### LLM-Agent Approach
+
 ```
 MCP Server ←→ LLM Agent ←→ Trading Platforms
                 ↓
@@ -106,6 +116,7 @@ MCP Server ←→ LLM Agent ←→ Trading Platforms
 ```
 
 **Key Components:**
+
 1. **MCP Servers** connecting to Polymarket and Kalshi APIs
 2. **LLM Agent** for:
    - Strategy analysis and generation
@@ -114,9 +125,11 @@ MCP Server ←→ LLM Agent ←→ Trading Platforms
 3. **Bot Infrastructure** for execution
 
 **Philosophy from Nick:**
+
 > "Don't over specify steps, give goals and let it do the work. Whatever LLM is reading this is going to be smarter than you."
 
 **Model Recommendations:**
+
 - Claude Opus 4.5
 - Gemini 3 (destroyed VendBench - $1K → $6K)
 - ChatGPT 5.1
@@ -126,17 +139,20 @@ MCP Server ←→ LLM Agent ←→ Trading Platforms
 ## Future Development Ideas
 
 ### Torin's ML Approach
+
 - Train logistic regression classifier on all Polymarket data
 - Predict true probability of any market
 - Calculate expected value for buy/no-buy decisions
 - Requires significant data collection first
 
 ### Arbitrage Scanner
+
 - Real-time comparison across Polymarket, Kalshi, other platforms
 - Alert when odds mismatch by 2%+
 - Automated cross-platform hedging
 
 ### Lindy Integration (Nick's Existing Bot)
+
 - 8-year-old margin lending bot
 - $7.5M under management for Gil
 - Consistently high single-digit returns
@@ -171,19 +187,23 @@ MCP Server ←→ LLM Agent ←→ Trading Platforms
 ## Action Items (From Fireflies Meeting)
 
 **Nick:**
+
 - [ ] Develop bot infrastructure with LLM as agent
 - [ ] Set up MCP server connections to platforms
 
 **Kenny:**
+
 - [ ] Continue manual trading to validate 14-day profitability
 - [ ] Train Anna & Clara on Kalshi navigation
 
 **Torin:**
+
 - [ ] Continue refining copy-bot (slippage, user filtering)
 - [ ] Data collection for ML classifier
 - [ ] Run copy-bot for 1 week validation
 
 **Conor:**
+
 - [ ] Support risk management analysis
 - [ ] Kelly criterion application research
 
@@ -221,4 +241,3 @@ knowledge/
 > "If you were dumber, you would rely more on AI and that's actually the better solution" - Nick to Conor
 
 > "I have not written a single line of code in the entire codebase myself" - Nick on AI-first development
-

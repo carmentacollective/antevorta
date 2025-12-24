@@ -2,7 +2,7 @@
 
 AI-driven trading bot infrastructure for prediction markets.
 
-> *Antevorta: Roman goddess of the future, who could see what was to come.*
+> _Antevorta: Roman goddess of the future, who could see what was to come._
 
 ## Vision
 
@@ -13,12 +13,15 @@ Build intelligent bots that exploit market inefficiencies in prediction markets 
 Three complementary approaches running in parallel:
 
 ### 🎯 Volatility Trading
+
 Exploits low-volume underdogs in sports markets by buying at price lows and selling at highs using limit orders (no-fee maker trades).
 
 ### 👥 Copy Trading
+
 Mirrors trades from top Polymarket performers in near real-time with ~4 second latency.
 
 ### ⚖️ Arbitrage Scanner
+
 Identifies cross-platform odds mismatches between Polymarket and Kalshi (2-5% inefficiencies).
 
 ## Architecture
@@ -31,13 +34,13 @@ Philosophy: Give goals, not steps. Let the LLM work.
 
 ## Team
 
-| Role | Person |
-|------|--------|
-| Architecture & AI | Nick Sullivan |
+| Role                | Person         |
+| ------------------- | -------------- |
+| Architecture & AI   | Nick Sullivan  |
 | Strategy Validation | Kenny Sullivan |
-| Bot Development | Torin |
-| Risk Management | Conor Sullivan |
-| Coordination | Anna Sullivan |
+| Bot Development     | Torin          |
+| Risk Management     | Conor Sullivan |
+| Coordination        | Anna Sullivan  |
 
 ## Status
 
