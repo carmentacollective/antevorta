@@ -1,14 +1,17 @@
 # Kal-trix-prediction-bot - Production-Grade Multi-Model Sentiment Trading
 
-**Repository**: [LoQiseaking69/Kal-trix-prediction-bot](https://github.com/LoQiseaking69/Kal-trix-prediction-bot)
-**Status**: Active (production-ready)
-**Markets**: Kalshi
-**Strategy**: Multi-model sentiment analysis + statistical arbitrage
-**Local Clone**: `../reference/Kal-trix-prediction-bot`
+**Repository**:
+[LoQiseaking69/Kal-trix-prediction-bot](https://github.com/LoQiseaking69/Kal-trix-prediction-bot)
+**Status**: Active (production-ready) **Markets**: Kalshi **Strategy**: Multi-model
+sentiment analysis + statistical arbitrage **Local Clone**:
+`../reference/Kal-trix-prediction-bot`
 
 ## Overview
 
-Comprehensive production-ready trading bot featuring advanced AI-powered sentiment analysis using multiple transformer models (BERT, RoBERTa, FinBERT), statistical arbitrage strategies, and sophisticated risk management. Includes modern React admin panel, Telegram integration, and full Docker containerization.
+Comprehensive production-ready trading bot featuring advanced AI-powered sentiment
+analysis using multiple transformer models (BERT, RoBERTa, FinBERT), statistical
+arbitrage strategies, and sophisticated risk management. Includes modern React admin
+panel, Telegram integration, and full Docker containerization.
 
 **Key Stats**:
 
@@ -257,8 +260,10 @@ class PortfolioRiskManager:
 ### Weaknesses
 
 - ❌ **Limited test coverage**: No visible test files
-- ❌ **Mock data fallback**: Uses demo data when API fails (good for testing, but needs clear separation)
-- ❌ **Hardcoded thresholds**: Many magic numbers (0.6, 0.7, 1.5, etc.) should be configurable
+- ❌ **Mock data fallback**: Uses demo data when API fails (good for testing, but needs
+  clear separation)
+- ❌ **Hardcoded thresholds**: Many magic numbers (0.6, 0.7, 1.5, etc.) should be
+  configurable
 - ❌ **No backtesting framework**: No historical simulation for strategy validation
 - ❌ **Missing CI/CD**: No automated testing or deployment pipeline
 
@@ -321,7 +326,8 @@ negative_keywords = {
 
 ### 1. Six-Model Sentiment Ensemble 🔥
 
-**Novel aspect**: Combines 3 transformer models + 3 traditional models with dynamic weighting.
+**Novel aspect**: Combines 3 transformer models + 3 traditional models with dynamic
+weighting.
 
 Most bots use a single model or simple averaging. This bot:
 
@@ -440,12 +446,14 @@ Includes:
 
 ## Verdict
 
-**Production-grade sentiment trading system** with sophisticated multi-model AI, professional UI, and comprehensive risk management. This is how you build a trading bot for actual deployment.
+**Production-grade sentiment trading system** with sophisticated multi-model AI,
+professional UI, and comprehensive risk management. This is how you build a trading bot
+for actual deployment.
 
-The code quality is high, architecture is sound, and documentation is excellent. Missing elements are testing and CI/CD, not core functionality.
+The code quality is high, architecture is sound, and documentation is excellent. Missing
+elements are testing and CI/CD, not core functionality.
 
-**Rating**: ⭐⭐⭐⭐ (4/5)
-**Maturity**: Production (needs tests and CI/CD)
-**Code Quality**: High
-**Innovation**: Very High (6-model ensemble, momentum analysis, correlation-aware sizing)
-**Relevance**: Very High (advanced AI strategy, production patterns to adopt)
+**Rating**: ⭐⭐⭐⭐ (4/5) **Maturity**: Production (needs tests and CI/CD) **Code
+Quality**: High **Innovation**: Very High (6-model ensemble, momentum analysis,
+correlation-aware sizing) **Relevance**: Very High (advanced AI strategy, production
+patterns to adopt)

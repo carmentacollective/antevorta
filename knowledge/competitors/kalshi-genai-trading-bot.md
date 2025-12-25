@@ -1,14 +1,16 @@
 # Kalshi GenAI Trading Bot - LLM as Autonomous Trader
 
-**Repository**: [ajwann/kalshi-genai-trading-bot](https://github.com/ajwann/kalshi-genai-trading-bot)
-**Status**: Active (production-ready)
-**Markets**: Kalshi
-**Strategy**: Grok 4.1 as autonomous trading decision-maker
-**Local Clone**: `../reference/kalshi-genai-trading-bot`
+**Repository**:
+[ajwann/kalshi-genai-trading-bot](https://github.com/ajwann/kalshi-genai-trading-bot)
+**Status**: Active (production-ready) **Markets**: Kalshi **Strategy**: Grok 4.1 as
+autonomous trading decision-maker **Local Clone**:
+`../reference/kalshi-genai-trading-bot`
 
 ## Overview
 
-Production-ready bot that uses **Grok 4.1 Fast Reasoning** (xAI) as the autonomous trading decision-maker. The bot finds new markets on Kalshi, sends metadata to Grok, and Grok performs online research via X.com to decide whether to trade.
+Production-ready bot that uses **Grok 4.1 Fast Reasoning** (xAI) as the autonomous
+trading decision-maker. The bot finds new markets on Kalshi, sends metadata to Grok, and
+Grok performs online research via X.com to decide whether to trade.
 
 **Key Innovation**: Treats LLM as the trader, not as an assistant to traders.
 
@@ -23,8 +25,8 @@ Production-ready bot that uses **Grok 4.1 Fast Reasoning** (xAI) as the autonomo
 
 ### How It Works
 
-**Traditional**: Human decides → Bot executes
-**This bot**: **Grok decides → Bot executes**
+**Traditional**: Human decides → Bot executes **This bot**: **Grok decides → Bot
+executes**
 
 The human only sets:
 
@@ -360,12 +362,12 @@ class GrokClient:
 
 ## Verdict
 
-Remarkably clean reference implementation showing **LLM-as-autonomous-agent** trading in production. The architecture is sound, but risk management is dangerously minimal.
+Remarkably clean reference implementation showing **LLM-as-autonomous-agent** trading in
+production. The architecture is sound, but risk management is dangerously minimal.
 
-Perfect example of how to structure LLM trading decisions, but needs significant risk management enhancements for production use.
+Perfect example of how to structure LLM trading decisions, but needs significant risk
+management enhancements for production use.
 
-**Rating**: ⭐⭐⭐⭐ (4/5)
-**Maturity**: Beta (works but needs risk mgmt)
-**Code Quality**: High
-**Innovation**: Very High (LLM-as-trader, vibe coding)
-**Relevance**: Very High (directly aligned with Antevorta's vision)
+**Rating**: ⭐⭐⭐⭐ (4/5) **Maturity**: Beta (works but needs risk mgmt) **Code
+Quality**: High **Innovation**: Very High (LLM-as-trader, vibe coding) **Relevance**:
+Very High (directly aligned with Antevorta's vision)

@@ -1,14 +1,16 @@
 # Polymarket Copy Trading Bot
 
-**Repository**: [GiordanoSouza/polymarket-copy-trading-bot](https://github.com/GiordanoSouza/polymarket-copy-trading-bot)
-**Status**: Active (working implementation)
-**Markets**: Polymarket only
-**Strategy**: Copy trading with ~4-8 second latency
-**Local Clone**: `../reference/polymarket-copy-trading-bot`
+**Repository**:
+[GiordanoSouza/polymarket-copy-trading-bot](https://github.com/GiordanoSouza/polymarket-copy-trading-bot)
+**Status**: Active (working implementation) **Markets**: Polymarket only **Strategy**:
+Copy trading with ~4-8 second latency **Local Clone**:
+`../reference/polymarket-copy-trading-bot`
 
 ## Overview
 
-Production-ready copy trading bot that mirrors a target trader's positions on Polymarket with 4-8 second latency. Uses Supabase for real-time event streaming and dual-layer detection (polling + Realtime) for reliability.
+Production-ready copy trading bot that mirrors a target trader's positions on Polymarket
+with 4-8 second latency. Uses Supabase for real-time event streaming and dual-layer
+detection (polling + Realtime) for reliability.
 
 **Key Stats**:
 
@@ -21,7 +23,10 @@ Production-ready copy trading bot that mirrors a target trader's positions on Po
 
 ### Trader Selection
 
-**Manual selection** - users find traders via [polymarket.com/leaderboard](https://polymarket.com/leaderboard) and copy their wallet address to `.env`. The bot blindly copies whatever the target trader does with no quality filters.
+**Manual selection** - users find traders via
+[polymarket.com/leaderboard](https://polymarket.com/leaderboard) and copy their wallet
+address to `.env`. The bot blindly copies whatever the target trader does with no
+quality filters.
 
 ### Dual-Layer Trade Detection
 
@@ -48,7 +53,8 @@ Production-ready copy trading bot that mirrors a target trader's positions on Po
 
 **Total: ~4-8 seconds** from trader action to bot order execution.
 
-**Bottleneck**: The 5-second polling interval. Could be reduced to sub-second latency by:
+**Bottleneck**: The 5-second polling interval. Could be reduced to sub-second latency
+by:
 
 - Switching to WebSocket streams from Polymarket
 - Using blockchain event monitoring (watch trader's proxy wallet directly)
@@ -75,7 +81,8 @@ Production-ready copy trading bot that mirrors a target trader's positions on Po
    make_order(price, final_size, SELL, token_id)
    ```
 
-   **Smart**: If trader exits 50% of position, bot exits 50% too (not just 0.5% due to sizing).
+   **Smart**: If trader exits 50% of position, bot exits 50% too (not just 0.5% due to
+   sizing).
 
 3. **Position Update**:
    ```python
@@ -111,7 +118,8 @@ PRIMARY KEY (proxy_wallet, asset)
 - market metadata (title, slug, outcome, end_date)
 ```
 
-**Update detection**: Compares old vs new values with 0.1 tolerance to avoid unnecessary UPDATEs.
+**Update detection**: Compares old vs new values with 0.1 tolerance to avoid unnecessary
+UPDATEs.
 
 **Tech Stack**:
 
@@ -173,7 +181,8 @@ STAKE_MIN = 5        # Defined but unused
 STAKE_MAX = 20       # Defined but unused
 ```
 
-**Critical gap**: `BANKROLL`, `STAKE_MIN`, `STAKE_MAX` are loaded but never enforced. Bot can exceed bankroll if trader makes huge bets.
+**Critical gap**: `BANKROLL`, `STAKE_MIN`, `STAKE_MAX` are loaded but never enforced.
+Bot can exceed bankroll if trader makes huge bets.
 
 ### Missing Risk Controls
 
@@ -210,7 +219,8 @@ STAKE_MAX = 20       # Defined but unused
 
   No retries, no alerting, no fallback.
 
-- ❌ **Hardcoded magic numbers**: `time.sleep(5)`, `time.sleep(6 * 60)`, `if sized_price >= 1`
+- ❌ **Hardcoded magic numbers**: `time.sleep(5)`, `time.sleep(6 * 60)`,
+  `if sized_price >= 1`
 - ❌ **No tests**: Zero test files
 - ❌ **Incomplete type hints**: Missing return type annotations
 - ❌ **Dead code**: `scripts/listen_to_order.py` entirely commented out (60 lines)
@@ -242,7 +252,8 @@ percentage_position = usdc_size / size_trader
 final_size = percentage_position * size_myself
 ```
 
-**Smart**: If trader exits 50% of position, bot exits 50% too. Maintains trade alignment during exits.
+**Smart**: If trader exits 50% of position, bot exits 50% too. Maintains trade alignment
+during exits.
 
 ### 4. Generated Column Deduplication 🔥
 
@@ -252,7 +263,8 @@ unique_key VARCHAR(500) GENERATED ALWAYS AS (
 ) STORED;
 ```
 
-**Elegant**: Database-level deduplication prevents race conditions from concurrent polling.
+**Elegant**: Database-level deduplication prevents race conditions from concurrent
+polling.
 
 ### 5. Supabase Realtime as Event System 🔥
 
@@ -306,10 +318,9 @@ Using Supabase Realtime (PostgreSQL logical replication) instead of:
 
 ## Verdict
 
-**MVP-ready** for personal use with manual monitoring. Not production-ready for automated capital allocation or unattended operation.
+**MVP-ready** for personal use with manual monitoring. Not production-ready for
+automated capital allocation or unattended operation.
 
-**Rating**: ⭐⭐⭐ (3/5)
-**Maturity**: Beta (working but needs hardening)
-**Code Quality**: Medium
-**Innovation**: Medium-High (dual-layer detection, database-centric)
+**Rating**: ⭐⭐⭐ (3/5) **Maturity**: Beta (working but needs hardening) **Code
+Quality**: Medium **Innovation**: Medium-High (dual-layer detection, database-centric)
 **Relevance**: Medium (good architecture patterns, missing AI)

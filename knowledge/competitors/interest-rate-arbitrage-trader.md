@@ -1,16 +1,18 @@
 # Interest Rate Arbitrage Trader - Mean Reversion Strategy
 
-**Repository**: [leocolab/Interest-Rate-Arbitrage-Trader](https://github.com/leocolab/Interest-Rate-Arbitrage-Trader)
-**Status**: Active
-**Markets**: Polymarket
-**Strategy**: Cross-market arbitrage (bond market vs Polymarket)
-**Local Clone**: `../reference/Interest-Rate-Arbitrage-Trader`
+**Repository**:
+[leocolab/Interest-Rate-Arbitrage-Trader](https://github.com/leocolab/Interest-Rate-Arbitrage-Trader)
+**Status**: Active **Markets**: Polymarket **Strategy**: Cross-market arbitrage (bond
+market vs Polymarket) **Local Clone**: `../reference/Interest-Rate-Arbitrage-Trader`
 
 ## Overview
 
-Compact arbitrage bot (369 lines total) that exploits discrepancies between bond market-implied Fed rate probabilities and Polymarket betting odds using volatility-weighted Z-scores for mean reversion signals.
+Compact arbitrage bot (369 lines total) that exploits discrepancies between bond
+market-implied Fed rate probabilities and Polymarket betting odds using
+volatility-weighted Z-scores for mean reversion signals.
 
-**Core Thesis**: Bond market incorporates professional analysis faster; Polymarket lags due to retail sentiment. Mean reversion profits from this lag.
+**Core Thesis**: Bond market incorporates professional analysis faster; Polymarket lags
+due to retail sentiment. Mean reversion profits from this lag.
 
 ## Strategy: Volatility-Aware Mean Reversion
 
@@ -18,7 +20,8 @@ Compact arbitrage bot (369 lines total) that exploits discrepancies between bond
 
 Compares two probability sources:
 
-- **Bond Market** (via Investing.com): Professional traders pricing Fed rate decisions through bond futures
+- **Bond Market** (via Investing.com): Professional traders pricing Fed rate decisions
+  through bond futures
 - **Polymarket** (via scraping): Retail/informed prediction market odds
 
 **Spread Calculation**:
@@ -51,9 +54,11 @@ elif weightedZScore < 1:
     sell = True  # Bet on "Change" (bond market more bearish)
 ```
 
-**Threshold**: Fixed at Z-score = 1 (no dynamic adjustment despite calculation infrastructure)
+**Threshold**: Fixed at Z-score = 1 (no dynamic adjustment despite calculation
+infrastructure)
 
-**Why This Matters**: A 2-sigma move 50 days out is less significant than 2-sigma move 2 days out. This prevents false signals during high-volatility periods.
+**Why This Matters**: A 2-sigma move 50 days out is less significant than 2-sigma move 2
+days out. This prevents false signals during high-volatility periods.
 
 ### Historical Data-Driven Calibration
 
@@ -69,7 +74,8 @@ for cycle in data['Cycle_ID'].unique():
     data.loc[mask, 'Rolling_Volatility'] = data.loc[mask, 'Abs_Value'].rolling(window=5).std()
 ```
 
-Creates a **regime-aware model** that understands each Fed decision cycle has different volatility characteristics.
+Creates a **regime-aware model** that understands each Fed decision cycle has different
+volatility characteristics.
 
 ## Architecture
 
@@ -172,7 +178,8 @@ weighted_z_scores = z_scores * (1 + (expected_volatility/32))
 ### Weaknesses
 
 - ❌ **No error handling** - bare exceptions will crash
-- ❌ **Magic numbers everywhere** - `rolling_window = 5`, `/ 32`, `zScoreThresh = 1`, `size=1000.0`
+- ❌ **Magic numbers everywhere** - `rolling_window = 5`, `/ 32`, `zScoreThresh = 1`,
+  `size=1000.0`
 - ❌ **No logging** - just `print(resp)`
 - ❌ **Web scraping fragility** - hardcoded CSS selectors will break
 - ❌ **No tests** - zero test coverage
@@ -196,15 +203,19 @@ currentExpectedVolatility = currentDaysOut * volatility_coefficient
 weightedZScore = currentZScore * (1 + (currentExpectedVolatility/32))
 ```
 
-Spreads are more volatile farther from the decision date. The bot predicts expected volatility using linear regression on historical rolling volatility.
+Spreads are more volatile farther from the decision date. The bot predicts expected
+volatility using linear regression on historical rolling volatility.
 
 ### 2. Cross-Market Probability Arbitrage 🔥
 
-Most Polymarket bots trade **within Polymarket** (arbitrage across correlated markets). This bot trades **against external pricing** (bond market), exploiting information asymmetry between institutional bond traders and retail prediction market participants.
+Most Polymarket bots trade **within Polymarket** (arbitrage across correlated markets).
+This bot trades **against external pricing** (bond market), exploiting information
+asymmetry between institutional bond traders and retail prediction market participants.
 
 ### 3. Cycle-Aware Historical Calibration 🔥
 
-Rather than guessing parameters, learns from 140 historical observations across multiple Fed decision cycles:
+Rather than guessing parameters, learns from 140 historical observations across multiple
+Fed decision cycles:
 
 ```python
 # Creating a Cycle ID based on resets at Days_Out = 0
@@ -216,15 +227,19 @@ for cycle in data['Cycle_ID'].unique():
     data.loc[mask, 'Rolling_Volatility'] = data.loc[mask, 'Abs_Value'].rolling(window=5).std()
 ```
 
-Each Fed decision cycle has different volatility characteristics - this approach respects that.
+Each Fed decision cycle has different volatility characteristics - this approach
+respects that.
 
 ## What to Learn
 
 **Steal These Patterns**:
 
-1. **Cross-market arbitrage** - Compare prediction market odds against "ground truth" sources (bond markets, options markets, news sentiment)
-2. **Volatility-weighted signals** - Don't treat all Z-scores equally; adjust for expected market conditions
-3. **Historical calibration** - Use actual historical spread data to calibrate thresholds
+1. **Cross-market arbitrage** - Compare prediction market odds against "ground truth"
+   sources (bond markets, options markets, news sentiment)
+2. **Volatility-weighted signals** - Don't treat all Z-scores equally; adjust for
+   expected market conditions
+3. **Historical calibration** - Use actual historical spread data to calibrate
+   thresholds
 4. **Cycle awareness** - Track market "regimes" separately
 
 **Avoid**:
@@ -238,8 +253,10 @@ Each Fed decision cycle has different volatility characteristics - this approach
 **Architecture Lessons**:
 
 - **Simple beats complex** for MVP - This 200-line bot actually trades
-- **Statistical arbitrage doesn't need LLMs** - Linear regression sufficient for volatility prediction
-- **Data quality > model complexity** - Historical data is the edge, not fancy algorithms
+- **Statistical arbitrage doesn't need LLMs** - Linear regression sufficient for
+  volatility prediction
+- **Data quality > model complexity** - Historical data is the edge, not fancy
+  algorithms
 
 ## Philosophical Differences
 
@@ -258,12 +275,12 @@ Each Fed decision cycle has different volatility characteristics - this approach
 
 ## Verdict
 
-**Production-quality concept, prototype-quality implementation**. The statistical approach is sound; the engineering needs hardening.
+**Production-quality concept, prototype-quality implementation**. The statistical
+approach is sound; the engineering needs hardening.
 
-The code is a great proof-of-concept showing that cross-market arbitrage works, but needs significant improvements for production deployment.
+The code is a great proof-of-concept showing that cross-market arbitrage works, but
+needs significant improvements for production deployment.
 
-**Rating**: ⭐⭐⭐ (3/5)
-**Maturity**: Prototype
-**Code Quality**: Low (needs hardening)
-**Innovation**: High (volatility-weighted signals, cross-market arb)
-**Relevance**: Medium (good strategy patterns, no AI)
+**Rating**: ⭐⭐⭐ (3/5) **Maturity**: Prototype **Code Quality**: Low (needs hardening)
+**Innovation**: High (volatility-weighted signals, cross-market arb) **Relevance**:
+Medium (good strategy patterns, no AI)

@@ -1,19 +1,24 @@
 # OctoBot-Prediction-Market - Vaporware Marketing Shell
 
-**Repository**: [Drakkar-Software/OctoBot-Prediction-Market](https://github.com/Drakkar-Software/OctoBot-Prediction-Market)
-**Status**: Vaporware (created Dec 2025, zero implementation)
-**Markets**: Polymarket (planned), Kalshi (planned)
-**Strategy**: Copy trading + Arbitrage (planned)
-**Local Clone**: `../reference/OctoBot-Prediction-Market`
+**Repository**:
+[Drakkar-Software/OctoBot-Prediction-Market](https://github.com/Drakkar-Software/OctoBot-Prediction-Market)
+**Status**: Vaporware (created Dec 2025, zero implementation) **Markets**: Polymarket
+(planned), Kalshi (planned) **Strategy**: Copy trading + Arbitrage (planned) **Local
+Clone**: `../reference/OctoBot-Prediction-Market`
 
 ## Overview
 
-**CRITICAL**: This repository is essentially a marketing shell with minimal implementation. The entire codebase consists of ~20 lines of actual code (mostly just `print("WIP")`), while the README promises sophisticated copy-trading and arbitrage features that don't exist yet.
+**CRITICAL**: This repository is essentially a marketing shell with minimal
+implementation. The entire codebase consists of ~20 lines of actual code (mostly just
+`print("WIP")`), while the README promises sophisticated copy-trading and arbitrage
+features that don't exist yet.
 
-**Total Python Code**: ~84 lines, of which ~80% is boilerplate
-**Actual Implementation**: `print("WIP")` in `cli.py:19`
+**Total Python Code**: ~84 lines, of which ~80% is boilerplate **Actual
+Implementation**: `print("WIP")` in `cli.py:19`
 
-This is a **thin wrapper/distribution** of the main [OctoBot](https://github.com/Drakkar-Software/OctoBot) project - a mature crypto trading platform.
+This is a **thin wrapper/distribution** of the main
+[OctoBot](https://github.com/Drakkar-Software/OctoBot) project - a mature crypto trading
+platform.
 
 ## Promised vs. Actual
 
@@ -26,9 +31,15 @@ This is a **thin wrapper/distribution** of the main [OctoBot](https://github.com
 
 ### Actual Status
 
-- **Copy Trading**: [Issue #3](https://github.com/Drakkar-Software/OctoBot-Prediction-Market/issues/3) - Open, no code
-- **Arbitrage Bot**: [Issue #2](https://github.com/Drakkar-Software/OctoBot-Prediction-Market/issues/2) - Open, no code
-- **Kalshi Support**: [Issue #4](https://github.com/Drakkar-Software/OctoBot-Prediction-Market/issues/4) - Open, no code
+- **Copy Trading**:
+  [Issue #3](https://github.com/Drakkar-Software/OctoBot-Prediction-Market/issues/3) -
+  Open, no code
+- **Arbitrage Bot**:
+  [Issue #2](https://github.com/Drakkar-Software/OctoBot-Prediction-Market/issues/2) -
+  Open, no code
+- **Kalshi Support**:
+  [Issue #4](https://github.com/Drakkar-Software/OctoBot-Prediction-Market/issues/4) -
+  Open, no code
 - **Polymarket Integration**: Zero API client code
 - **Trading Logic**: Nonexistent
 
@@ -52,7 +63,10 @@ OctoBot uses modular plugins called "tentacles":
 
 **The Profile Problem**:
 
-The `default_config.json` references a `"profile": "prediction_market"` that should contain trading logic, but this profile **does not exist** in the [OctoBot-Tentacles](https://github.com/Drakkar-Software/OctoBot-Tentacles) repository yet.
+The `default_config.json` references a `"profile": "prediction_market"` that should
+contain trading logic, but this profile **does not exist** in the
+[OctoBot-Tentacles](https://github.com/Drakkar-Software/OctoBot-Tentacles) repository
+yet.
 
 ## Code Quality
 
@@ -113,7 +127,8 @@ All commits are infrastructure/documentation - **zero trading logic commits**.
 
 ## What Real Polymarket Bots Look Like
 
-Actual working bots ([example](https://github.com/Trust412/polymarket-copy-trading-bot-version-3)) include:
+Actual working bots
+([example](https://github.com/Trust412/polymarket-copy-trading-bot-version-3)) include:
 
 - TypeScript/Node.js with Web3 libraries
 - Polygon RPC endpoint management
@@ -128,7 +143,8 @@ Actual working bots ([example](https://github.com/Trust412/polymarket-copy-tradi
 
 **Conceptual Architecture**:
 
-1. **Profile-based architecture** - OctoBot's tentacle/profile system is elegant for strategy modularity
+1. **Profile-based architecture** - OctoBot's tentacle/profile system is elegant for
+   strategy modularity
 2. **Distribution vs Core** - Separating platform from strategy enables reuse
 3. **Paper trading mode** - Critical for strategy validation
 4. **Self-custody** - Keys stay local, important for security positioning
@@ -149,7 +165,9 @@ Actual working bots ([example](https://github.com/Trust412/polymarket-copy-tradi
 
 ## Verdict
 
-**This is a placeholder repository** announcing intent to build Polymarket/Kalshi trading features on top of the OctoBot framework. It's useful as a **design document** showing what features traders want, but provides no code to learn from.
+**This is a placeholder repository** announcing intent to build Polymarket/Kalshi
+trading features on top of the OctoBot framework. It's useful as a **design document**
+showing what features traders want, but provides no code to learn from.
 
 For Antevorta, look at:
 
@@ -157,10 +175,8 @@ For Antevorta, look at:
 - The feature wishlist (copy trading, arbitrage)
 - The marketing positioning (self-custody, visual UI)
 
-But implement everything yourself using actual Polymarket APIs, smart contracts, and proven architectures.
+But implement everything yourself using actual Polymarket APIs, smart contracts, and
+proven architectures.
 
-**Rating**: ⭐ (1/5) - Vaporware
-**Maturity**: Pre-alpha (no code)
-**Code Quality**: N/A
-**Innovation**: Marketing only
-**Relevance**: Low (conceptual only)
+**Rating**: ⭐ (1/5) - Vaporware **Maturity**: Pre-alpha (no code) **Code Quality**: N/A
+**Innovation**: Marketing only **Relevance**: Low (conceptual only)

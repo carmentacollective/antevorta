@@ -6,10 +6,8 @@ AI-driven trading bot infrastructure for prediction markets (Polymarket, Kalshi)
 
 @.cursor/rules/heart-centered-ai-philosophy.mdc
 @.cursor/rules/trust-and-decision-making.mdc
-@.cursor/rules/code-style-and-zen-of-python.mdc
-@.cursor/rules/ruff-linting.mdc
-@.cursor/rules/external-apis.mdc
-@.cursor/rules/git-interaction.mdc
+@.cursor/rules/code-style-and-zen-of-python.mdc @.cursor/rules/ruff-linting.mdc
+@.cursor/rules/external-apis.mdc @.cursor/rules/git-interaction.mdc
 @.cursor/rules/prompt-engineering.mdc
 
 ## Project Type
@@ -30,7 +28,8 @@ Python project using LLM agents as autonomous decision-makers for trading strate
 
 ## Philosophy
 
-Give goals, not steps. Let the LLM work. Whatever LLM is reading this is smarter than the instructions you'd write.
+Give goals, not steps. Let the LLM work. Whatever LLM is reading this is smarter than
+the instructions you'd write.
 
 ## Team
 
@@ -64,7 +63,8 @@ Manual `/compact` at task boundaries rather than letting auto-compact interrupt 
 
 When compacting, preserve the current working state:
 
-- **Git context**: Current branch name, which worktree you're in, any uncommitted changes
+- **Git context**: Current branch name, which worktree you're in, any uncommitted
+  changes
 - **Running processes**: Bot instances, API connections, background jobs
 - **Environment**: Paper trading vs live mode, API keys loaded, which exchange endpoints
 - **Bot state**: Active positions, pending orders, P&L for session

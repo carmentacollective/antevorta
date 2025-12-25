@@ -1,16 +1,18 @@
 # BTC-Thorp - Volatility Trading Bot
 
-**Repository**: [ppgrobot/BTC-Thorp](https://github.com/ppgrobot/BTC-Thorp)
-**Status**: Active (recent commits)
-**Markets**: Kalshi
-**Strategy**: BTC/ETH hourly volatility NO contracts
-**Local Clone**: `../reference/BTC-Thorp`
+**Repository**: [ppgrobot/BTC-Thorp](https://github.com/ppgrobot/BTC-Thorp) **Status**:
+Active (recent commits) **Markets**: Kalshi **Strategy**: BTC/ETH hourly volatility NO
+contracts **Local Clone**: `../reference/BTC-Thorp`
 
 ## Overview
 
-BTC-Thorp is a quantitative volatility trading bot for Kalshi's hourly crypto markets. It identifies when the market underprices NO contracts on BTC/ETH hourly strikes by comparing market-implied probabilities to a realized volatility model.
+BTC-Thorp is a quantitative volatility trading bot for Kalshi's hourly crypto markets.
+It identifies when the market underprices NO contracts on BTC/ETH hourly strikes by
+comparing market-implied probabilities to a realized volatility model.
 
-**Core Thesis**: Markets misprice short-term crypto volatility. They imply 15-20% probability of 20bp moves when realized volatility shows these moves happen <1% of the time.
+**Core Thesis**: Markets misprice short-term crypto volatility. They imply 15-20%
+probability of 20bp moves when realized volatility shows these moves happen <1% of the
+time.
 
 ## Strategy
 
@@ -207,36 +209,35 @@ aws lambda create-function \
 - Documentation generation
 - Infrastructure setup
 
-This is smart: Use AI for engineering productivity, but keep trading decisions deterministic and auditable.
+This is smart: Use AI for engineering productivity, but keep trading decisions
+deterministic and auditable.
 
 ## Unique Innovations
 
-1. **Dynamic Volatility Windows** 🔥
-   Match volatility window to time remaining (15m vol for 15m to settlement) instead of scaling single window
+1. **Dynamic Volatility Windows** 🔥 Match volatility window to time remaining (15m vol
+   for 15m to settlement) instead of scaling single window
 
-2. **Shared Position Tracking** 🔥
-   Combined BTC + ETH exposure tracking prevents over-leveraging on correlated opportunities
+2. **Shared Position Tracking** 🔥 Combined BTC + ETH exposure tracking prevents
+   over-leveraging on correlated opportunities
 
-3. **Trading Window Risk Adjustment** 🔥
-   Different edge requirements by time (12% early, 4% late)
+3. **Trading Window Risk Adjustment** 🔥 Different edge requirements by time (12% early,
+   4% late)
 
-4. **High-Frequency Price Collection**
-   Every 10 seconds (6 samples/minute) for better volatility estimates
+4. **High-Frequency Price Collection** Every 10 seconds (6 samples/minute) for better
+   volatility estimates
 
-5. **Weather Liquidity Provider** 🔥
-   Separate bot that waits for certain outcomes at 6pm, then provides liquidity at 99¢ for rewards
+5. **Weather Liquidity Provider** 🔥 Separate bot that waits for certain outcomes at
+   6pm, then provides liquidity at 99¢ for rewards
 
-6. **Volatility Floor + Ceiling**
-   Prevents overconfidence (floor) and recognizes model breakdown (ceiling)
+6. **Volatility Floor + Ceiling** Prevents overconfidence (floor) and recognizes model
+   breakdown (ceiling)
 
-7. **Docker-First Deployment**
-   Container images instead of zip files for Lambda
+7. **Docker-First Deployment** Container images instead of zip files for Lambda
 
-8. **TTL-Based Lifecycle**
-   Data auto-deletes via DynamoDB TTL (no cron jobs)
+8. **TTL-Based Lifecycle** Data auto-deletes via DynamoDB TTL (no cron jobs)
 
-9. **Sliding Scale Edge Analysis**
-   Logs hypothetical trades with different edge requirements (data mining for optimization)
+9. **Sliding Scale Edge Analysis** Logs hypothetical trades with different edge
+   requirements (data mining for optimization)
 
 ## What to Learn
 
@@ -284,10 +285,9 @@ This is smart: Use AI for engineering productivity, but keep trading decisions d
 
 ## Verdict
 
-**Excellent reference material** - clean, well-documented, production-tested. Their risk management framework is particularly strong and worth emulating. The dynamic volatility windows and shared position tracking are innovations we should adopt.
+**Excellent reference material** - clean, well-documented, production-tested. Their risk
+management framework is particularly strong and worth emulating. The dynamic volatility
+windows and shared position tracking are innovations we should adopt.
 
-**Rating**: ⭐⭐⭐⭐⭐ (5/5)
-**Maturity**: Production
-**Code Quality**: High
-**Innovation**: High
-**Relevance**: Very High
+**Rating**: ⭐⭐⭐⭐⭐ (5/5) **Maturity**: Production **Code Quality**: High
+**Innovation**: High **Relevance**: Very High

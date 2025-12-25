@@ -1,6 +1,7 @@
 # Competitive Analysis
 
-This directory contains competitive analysis of open source prediction market trading bots.
+This directory contains competitive analysis of open source prediction market trading
+bots.
 
 ## Purpose
 

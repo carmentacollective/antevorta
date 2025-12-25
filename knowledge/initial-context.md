@@ -6,7 +6,8 @@
 
 ## Project Overview
 
-**Vision:** Build an AI-driven trading bot infrastructure for prediction markets (Polymarket, Kalshi) that generates consistent profits through automated strategies.
+**Vision:** Build an AI-driven trading bot infrastructure for prediction markets
+(Polymarket, Kalshi) that generates consistent profits through automated strategies.
 
 **Goal:** $100,000 in earnings by January 2026
 
@@ -25,7 +26,8 @@
 
 ### Polymarket
 
-- Currently banned in US (green light to return November 2024, not yet available without VPN/crypto)
+- Currently banned in US (green light to return November 2024, not yet available without
+  VPN/crypto)
 - API available for bots
 - Leaderboard system for tracking top traders
 - Maker/taker fee structure (makers get no fees + rewards)
@@ -126,7 +128,8 @@ MCP Server ←→ LLM Agent ←→ Trading Platforms
 
 **Philosophy from Nick:**
 
-> "Don't over specify steps, give goals and let it do the work. Whatever LLM is reading this is going to be smarter than you."
+> "Don't over specify steps, give goals and let it do the work. Whatever LLM is reading
+> this is going to be smarter than you."
 
 **Model Recommendations:**
 
@@ -236,8 +239,11 @@ knowledge/
 
 > "Genius is simplicity" - Conor on Kenny's strategy
 
-> "The gap between idea and execution is asymptotically reaching zero" - Nick on AI development
+> "The gap between idea and execution is asymptotically reaching zero" - Nick on AI
+> development
 
-> "If you were dumber, you would rely more on AI and that's actually the better solution" - Nick to Conor
+> "If you were dumber, you would rely more on AI and that's actually the better
+> solution" - Nick to Conor
 
-> "I have not written a single line of code in the entire codebase myself" - Nick on AI-first development
+> "I have not written a single line of code in the entire codebase myself" - Nick on
+> AI-first development
