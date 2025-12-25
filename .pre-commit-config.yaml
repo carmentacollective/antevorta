@@ -59,17 +59,7 @@ repos:
       - id: prettier
         name: Format with Prettier
         types_or:
-          [
-            "javascript",
-            "jsx",
-            "ts",
-            "tsx",
-            "css",
-            "scss",
-            "json",
-            "yaml",
-            "markdown",
-          ]
+          ["javascript", "jsx", "ts", "tsx", "css", "scss", "json", "yaml", "markdown"]
         exclude: |
           (?x)^(
             .*\.min\.(js|css)|
