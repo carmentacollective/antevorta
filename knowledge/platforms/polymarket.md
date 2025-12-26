@@ -104,19 +104,14 @@ Find your proxy address below your profile picture on Polymarket.
 
 ### Client Setup
 
-```python
-from py_clob_client.client import ClobClient
+Use `py-clob-client` with:
 
-# For email/Magic wallet users
-client = ClobClient(
-    "https://clob.polymarket.com",
-    key="<private-key-from-magic-export>",
-    chain_id=137,
-    signature_type=1,  # POLY_PROXY
-    funder="<proxy-address-from-profile>"
-)
-client.set_api_creds(client.create_or_derive_api_creds())
-```
+- **Endpoint**: `https://clob.polymarket.com`
+- **Chain**: Polygon (chain_id 137)
+- **Signature type**: `POLY_PROXY` (type 1) for Magic/email wallets
+- **Funder**: Your proxy address (from profile page)
+
+API credentials are derived from the private key on first use.
 
 ### Getting Your Private Key
 

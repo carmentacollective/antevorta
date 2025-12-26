@@ -44,25 +44,9 @@ Every request requires three headers:
 
 ### Signature Generation
 
-Sign: `timestamp_milliseconds + HTTP_METHOD + path_without_query_params`
+**Message format**: `{timestamp_ms}{HTTP_METHOD}{path}` (concatenated, no separators)
 
-```python
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.asymmetric import padding
-import base64
-
-def sign_request(private_key, timestamp_ms: str, method: str, path: str) -> str:
-    message = f"{timestamp_ms}{method}{path}".encode('utf-8')
-    signature = private_key.sign(
-        message,
-        padding.PSS(
-            mgf=padding.MGF1(hashes.SHA256()),
-            salt_length=padding.PSS.DIGEST_LENGTH
-        ),
-        hashes.SHA256()
-    )
-    return base64.b64encode(signature).decode('utf-8')
-```
+**Algorithm**: RSA-PSS with SHA256, salt length = digest length, base64-encoded output
 
 **Gotcha**: Sign path _without_ query params. `/trade-api/v2/portfolio/orders?limit=5`
 signs as `/trade-api/v2/portfolio/orders`.
