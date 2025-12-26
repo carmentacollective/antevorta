@@ -7,7 +7,9 @@ API clients, SDKs, and utility libraries for prediction market integration.
 | Library                                               | Platform   | Rating | Verdict         |
 | ----------------------------------------------------- | ---------- | ------ | --------------- |
 | [py-clob-client](./py-clob-client.md)                 | Polymarket | 3.5/5  | Use (with care) |
+| [kalshi-python](./kalshi-python.md)                   | Kalshi     | 4/5    | Use (official)  |
 | [dr-manhattan](./dr-manhattan.md)                     | Multi      | 4/5    | Fork it         |
+| [polymarket-agents](./polymarket-agents.md)           | Polymarket | -      | Study patterns  |
 | [aiokalshi](./aiokalshi.md)                           | Kalshi     | 2/5    | Skip            |
 | [Prediction Market Data](./prediction-market-data.md) | Multi      | -      | Landscape       |
 
@@ -21,11 +23,16 @@ API clients, SDKs, and utility libraries for prediction market integration.
 
 ## Kalshi
 
+- **[kalshi-python](./kalshi-python.md)** - Official SDK with full API coverage.
+  OpenAPI-generated, all endpoints supported. 4/5 - Use this.
+
 - **[aiokalshi](./aiokalshi.md)** - Async client with nice Pydantic models, but
   read-only (no trading). 2/5 - Skip.
 
-- **kalshi-py** (not analyzed separately) - Better alternative with async + sync
-  support, full trading. See prediction-market-data.md.
+## AI/Agent Frameworks
+
+- **[polymarket-agents](./polymarket-agents.md)** - Official Polymarket framework for
+  LLM-powered trading agents. 975 stars. Essential reference for our architecture.
 
 ## Data Aggregation
 
@@ -39,6 +46,11 @@ normalization layer.
 
 **Medium-term**: Fork dr-manhattan, strip unnecessary deps, add Kalshi support, build
 our own maintained version.
+
+## See Also
+
+- **[Platforms](../platforms/)** - Authentication details, API setup, multi-user
+  considerations for Kalshi and Polymarket
 
 ## Reference Repositories
 
