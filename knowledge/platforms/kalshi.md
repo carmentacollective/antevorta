@@ -2,6 +2,33 @@
 
 US-regulated prediction market exchange. CFTC-regulated, legal for US users without VPN.
 
+## Consumer Onboarding
+
+Non-technical users can sign up without any crypto knowledge.
+
+### Signup Flow
+
+1. **Create account**: Email + password (or Apple ID / Google sign-in)
+2. **Verify identity (KYC)**: Upload US government ID + SSN (takes up to 48 hours)
+3. **Fund account**: US debit card (2% fee), bank transfer, or wire
+4. **Trade**: App or web interface works immediately
+
+### From Consumer to API Access
+
+The consumer login (email/password) is separate from API authentication. Any verified
+user can generate API keys:
+
+1. Log into Kalshi (web is easier than app for this)
+2. Go to **Profile Settings** → `kalshi.com/account/profile`
+3. Find **"API Keys"** section
+4. Click **"Create New API Key"**
+5. **Download the `.txt` file** - this is the RSA private key
+6. Provide to Antevorta (we store encrypted in our database)
+
+Kalshi generates the RSA keypair. The user just clicks and downloads - no crypto
+knowledge required. They provide the key once, we store it securely, and the bot trades
+on their behalf.
+
 ## Authentication
 
 ### Method: RSA-PSS Signing

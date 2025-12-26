@@ -1,7 +1,55 @@
 # Polymarket
 
 Largest prediction market by volume. Crypto-based on Polygon. US users technically
-restricted (requires VPN).
+restricted (requires VPN). iOS app launched Dec 2025 with CFTC approval (waitlist,
+sports only initially).
+
+## Consumer Onboarding
+
+Non-technical users can sign up without crypto knowledge - Polymarket hides the
+blockchain complexity.
+
+### Signup Flow
+
+1. **Create account**: Email (Magic Link) or Google OAuth
+2. **Magic wallet created automatically** - user never sees seed phrases
+3. **Fund account**: Credit/debit via MoonPay, or Robinhood/Coinbase Connect
+4. **Trade**: Web or app interface works immediately
+
+### Funding Options
+
+| Method        | Provider          | Fees   | Notes                         |
+| ------------- | ----------------- | ------ | ----------------------------- |
+| Credit/Debit  | MoonPay           | 1-4%   | Visa, Mastercard. ~$30 min    |
+| Bank Transfer | MoonPay           | Lower  | Direct ACH                    |
+| Robinhood     | Robinhood Connect | Varies | Fund from Robinhood balance   |
+| Coinbase      | Coinbase Pay      | Varies | Seamless if you have Coinbase |
+
+Behind the scenes: USD → USDC conversion happens automatically. User never touches
+crypto directly.
+
+### From Consumer to API Access
+
+More complex than Kalshi because there's a proxy wallet involved.
+
+**Prerequisites:**
+
+1. Complete at least ONE trade via the web UI first (deploys proxy wallet)
+2. Know your funder address (shown below profile picture on polymarket.com)
+
+**Export private key:**
+
+1. Go to **https://reveal.magic.link/polymarket**
+2. Authenticate through Magic
+3. Copy the private key
+4. Provide to Antevorta (we store encrypted in our database)
+
+**What we need from each user:**
+
+- Private key (from Magic export)
+- Funder address (proxy wallet address from their profile)
+
+Both are required. The private key signs, the funder address holds funds.
 
 ## Authentication
 
@@ -78,22 +126,18 @@ client.set_api_creds(client.create_or_derive_api_creds())
 
 ### Multi-User Setup (Family Trading)
 
-**No delegation system exists.** Options:
+**No delegation system exists.** Each family member:
 
-1. **Share private key** (high risk)
-   - Family member exports key, gives to bot
-   - Full wallet access (can withdraw everything)
-   - Trust-based security only
+1. Signs up for Polymarket (email is fine)
+2. Funds their account
+3. Makes at least one trade via the UI (deploys proxy)
+4. Exports private key from Magic
+5. Provides key + funder address to Antevorta
 
-2. **Dedicated trading wallet** (recommended)
-   - Create separate Polymarket account just for bot
-   - Fund only what you're willing to risk
-   - Main account stays isolated
+We store keys encrypted in our database and trade on their behalf.
 
-3. **Turnkey integration** (enterprise)
-   - Keys in secure enclaves, never exposed
-   - Bot requests signatures via API
-   - Full audit trail
+**Security note**: The private key has full wallet access including withdrawals. Family
+members should only fund what they're comfortable having the bot manage.
 
 ### Allowances (EOA/MetaMask only)
 
