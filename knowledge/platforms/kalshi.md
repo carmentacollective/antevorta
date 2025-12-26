@@ -9,7 +9,8 @@ Non-technical users can sign up without any crypto knowledge.
 ### Signup Flow
 
 1. **Create account**: Email + password (or Apple ID / Google sign-in)
-2. **Verify identity (KYC)**: Upload US government ID + SSN (takes up to 48 hours)
+2. **Verify identity (KYC)**: Upload US government ID + SSN (often instant, up to 48h
+   max)
 3. **Fund account**: US debit card (2% fee), bank transfer, or wire
 4. **Trade**: App or web interface works immediately
 
