@@ -1,91 +1,113 @@
 # kalshi-python
 
-Official Kalshi Python SDK for algorithmic trading.
+Official Kalshi Python SDK for algorithmic trading. **Source code is private.**
 
 ## Quick Facts
 
 | Attribute   | Value                                                            |
 | ----------- | ---------------------------------------------------------------- |
-| **Repo**    | [Kalshi GitHub](https://github.com/Kalshi)                       |
 | **PyPI**    | `kalshi-python`                                                  |
-| **Version** | v2.1.4                                                           |
+| **Version** | v2.1.4 (Sept 2025)                                               |
+| **Repo**    | Private (PyPI links to non-existent `Kalshi/exchange-infra`)     |
 | **Docs**    | [docs.kalshi.com/python-sdk](https://docs.kalshi.com/python-sdk) |
-| **Python**  | 3.8+                                                             |
-| **Status**  | Official, maintained                                             |
+| **Python**  | 3.9+                                                             |
+| **Status**  | Official, maintained, but closed source                          |
+
+## Red Flag: Private Repository
+
+The PyPI metadata points to `https://github.com/Kalshi/exchange-infra` which doesn't
+exist publicly. The actual source is not available for review. For a trading system
+handling real money, this is a concern:
+
+- Can't review security implementation
+- Can't see issue tracker or bug reports
+- Can't contribute fixes
+- Can't audit for vulnerabilities
 
 ## What It Does
 
-Full API coverage for Kalshi's prediction market:
+Auto-generated from OpenAPI spec. Full API coverage:
 
 - Market discovery and event data
-- Order placement and management
+- Order placement and management (create, amend, cancel, batch)
 - Portfolio and position tracking
 - Account management
-- WebSocket for real-time updates
+- 90+ Pydantic v2 models
+
+## Code Quality (from PyPI extraction)
+
+**Strengths:**
+
+- Pydantic v2 models with `StrictStr`, `StrictInt` validation
+- RSA-PSS authentication implemented correctly
+- Custom exception hierarchy (BadRequest, Unauthorized, Forbidden, etc.)
+- Type hints present throughout
+
+**Weaknesses:**
+
+- Sync-only (no async support)
+- Silent error swallowing in some paths
+- No retry logic or timeout defaults
+- No tests included
+- Auto-generated code is verbose
 
 ## API Coverage
 
 Generated from OpenAPI spec, covers all endpoints:
 
 - `ApiKeys` - API key management
-- `Communications` - Notifications
 - `Events` - Event discovery
 - `Exchange` - Exchange status
-- `Markets` - Market data and trading
-- `Portfolio` - Positions and P&L
-- `Series` - Market series
+- `Markets` - Market data, orderbook, trades
+- `Portfolio` - Positions, balance, fills
+- `Orders` - Create, amend, cancel, batch operations
 
 ## WebSocket Support
 
-Real-time streaming available:
+Real-time streaming endpoints exist but SDK doesn't wrap them well:
 
 ```
-Production: wss://trading-api.kalshi.com/trade-api/ws/v2
+Production: wss://api.elections.kalshi.com/trade-api/ws/v2
 Demo: wss://demo-api.kalshi.co/trade-api/ws/v2
 ```
-
-**Authentication required** via headers:
-
-- `KALSHI-ACCESS-KEY`
-- `KALSHI-ACCESS-SIGNATURE` (RSA-PSS)
-- `KALSHI-ACCESS-TIMESTAMP`
 
 ## Usage Pattern
 
 ```python
-from kalshi_python import ApiInstance
-from kalshi_python.models import *
+from kalshi_python import Configuration, ApiClient
+from kalshi_python.api import MarketsApi, PortfolioApi
 
-# Initialize
 config = Configuration()
-config.host = "https://trading-api.kalshi.com/trade-api/v2"
-api = ApiInstance(config)
+config.host = "https://api.elections.kalshi.com/trade-api/v2"
 
-# Authenticate
-api.login(email, password)
+# Load RSA private key
+with open("private_key.pem", "r") as f:
+    config.private_key_pem = f.read()
+config.api_key_id = "your-api-key-id"
+
+client = ApiClient(config)
+markets_api = MarketsApi(client)
+portfolio_api = PortfolioApi(client)
 
 # Get markets
-markets = api.get_markets(event_ticker="SPORTS-NBA")
+markets = markets_api.get_markets(event_ticker="SPORTS-NBA")
 
-# Place order
-order = api.create_order(
-    ticker=market_ticker,
-    side="yes",
-    count=10,
-    type="limit",
-    yes_price=50,  # cents
-)
+# Get balance
+balance = portfolio_api.get_balance()
 ```
 
 ## Verdict
 
-**Use this.** Official SDK with full API coverage. CFTC-regulated platform means stable,
-documented API. Good for the underdog volatility strategy since Kalshi has strong sports
-markets.
+**Not recommended as primary choice.** While it works, the private source code is a red
+flag for production trading. Consider `kalshi-py` instead which is open source with
+better code quality.
 
-## Considerations
+## When to Use
 
-- US-legal (unlike Polymarket without VPN)
-- Lower volume than Polymarket = more volatility opportunity
-- Demo environment available for testing
-- RSA key authentication is more complex than Polymarket's approach
+- Quick prototyping where you trust Kalshi completely
+- If you need the absolute latest API coverage (auto-generated from their spec)
+- As a reference for endpoint signatures
+
+## Alternatives
+
+See [kalshi-py.md](./kalshi-py.md) for the recommended open-source alternative.
