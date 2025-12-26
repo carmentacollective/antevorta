@@ -2,37 +2,43 @@
 
 API clients, SDKs, and utility libraries for prediction market integration.
 
-## Purpose
+## Quick Reference
 
-Evaluate libraries we might use to build Antevorta:
-
-- API clients for Polymarket and Kalshi
-- Blockchain/Web3 utilities
-- Data processing tools
-- Useful open source components
+| Library                                               | Platform   | Rating | Verdict         |
+| ----------------------------------------------------- | ---------- | ------ | --------------- |
+| [py-clob-client](./py-clob-client.md)                 | Polymarket | 3.5/5  | Use (with care) |
+| [dr-manhattan](./dr-manhattan.md)                     | Multi      | 4/5    | Fork it         |
+| [aiokalshi](./aiokalshi.md)                           | Kalshi     | 2/5    | Skip            |
+| [Prediction Market Data](./prediction-market-data.md) | Multi      | -      | Landscape       |
 
 ## Polymarket
 
-- **py-clob-client** - Official Python client for Polymarket CLOB API
-- **dr-manhattan** - Alternative Polymarket library
+- **[py-clob-client](./py-clob-client.md)** - Official Python client. Production-ready
+  but sync-only, some reliability issues with order book data. 3.5/5
+
+- **[dr-manhattan](./dr-manhattan.md)** - CCXT-style multi-exchange abstraction with
+  strategy framework and WebSocket support. Best candidate for forking. 4/5
 
 ## Kalshi
 
-- **aiokalshi** - Async Python client for Kalshi API
+- **[aiokalshi](./aiokalshi.md)** - Async client with nice Pydantic models, but
+  read-only (no trading). 2/5 - Skip.
 
-## Data
+- **kalshi-py** (not analyzed separately) - Better alternative with async + sync
+  support, full trading. See prediction-market-data.md.
 
-- **predmarket** - Prediction market data aggregation
+## Data Aggregation
 
-## Analysis Structure
+- **[Prediction Market Data](./prediction-market-data.md)** - Landscape analysis of
+  unified data libraries including predmarket, plus commercial options.
 
-Each library analysis should cover:
+## Strategic Recommendation
 
-- **Overview**: What it does, who maintains it
-- **API Coverage**: Which endpoints/features are supported
-- **Code Quality**: Types, tests, documentation, maintenance activity
-- **Integration Effort**: How easy to adopt, dependencies, gotchas
-- **Verdict**: Use it, fork it, or build our own
+**Short-term**: Use official SDKs (py-clob-client + kalshi-python) with our own
+normalization layer.
+
+**Medium-term**: Fork dr-manhattan, strip unnecessary deps, add Kalshi support, build
+our own maintained version.
 
 ## Reference Repositories
 
