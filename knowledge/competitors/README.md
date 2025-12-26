@@ -18,17 +18,16 @@ All analyzed repositories are cloned in `../../reference/` for direct code inspe
 
 ## Bots Analyzed
 
-### Actual Trading Bots
-
 - **[BTC-Thorp](./btc-thorp.md)** - Volatility trading on Kalshi BTC/ETH hourly markets
-- More coming soon...
+- **[Interest Rate Arbitrage](./interest-rate-arbitrage-trader.md)** - Fed rate
+  arbitrage on Polymarket
+- **[Kal-trix](./kal-trix-prediction-bot.md)** - Multi-model sentiment trading on Kalshi
+- **[Kalshi GenAI](./kalshi-genai-trading-bot.md)** - Grok as autonomous trader on
+  Kalshi
+- **[Polymarket Copy Trading](./polymarket-copy-trading-bot.md)** - Copy trading with
+  ~4-8s latency
 
-### Libraries (Reference)
-
-- py-clob-client - Polymarket API client
-- dr-manhattan - Another Polymarket library
-- aiokalshi - Async Kalshi API client
-- predmarket - Prediction market data library
+For API clients and SDKs, see [../libraries/](../libraries/).
 
 ## Analysis Structure
 
