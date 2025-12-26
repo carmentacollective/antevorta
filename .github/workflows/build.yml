@@ -1,33 +1,60 @@
 ---
-# Build and test the code
-name: Build
-on: [push, pull_request]
+# =====================================================================
+# Antevorta CI Pipeline
+# =====================================================================
+#
+# Continuous integration for the AI-driven trading bot infrastructure.
+#
+# Flow:
+# 1. lint-code: Quick static analysis with pre-commit (ruff, etc.)
+# 2. test-python: Python tests with coverage reporting
+#
+# Both jobs run in parallel for fast feedback.
+#
+# Skip CI Feature:
+# Add [skip ci] or [ci skip] in commit message to skip the workflow.
+# =====================================================================
+
+name: Build Antevorta
+
+on:
+  pull_request:
+    branches: [main]
+
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
 permissions: read-all
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  pre-commit:
-    name: Pre-commit (linting)
+  lint-code:
+    name: ✨ Lint code
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v6
 
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.1
 
-  pytest:
-    name: Python tests
+  test-python:
+    name: 🐍 Test Python
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       APP_ENVIRONMENT: test
 
-    timeout-minutes: 5
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v5
+      - name: Checkout code
+        uses: actions/checkout@v6
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -41,5 +68,5 @@ jobs:
           pip install pytest pytest-cov
           pip install -e . 2>/dev/null || true
 
-      - name: Run the tests with coverage
+      - name: Run tests with coverage
         run: pytest --cov=./ --cov-report=xml
